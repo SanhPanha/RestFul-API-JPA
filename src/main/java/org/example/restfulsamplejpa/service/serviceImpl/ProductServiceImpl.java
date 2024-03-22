@@ -29,8 +29,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse createProduct(ProductRequest product) {
-        return null;
+    public ProductResponse createProduct(ProductRequest request) {
+        return productMapper.mapToProductResponse(
+                productRepository.save(
+                        productMapper.mapRequestToProduct(request)
+                )
+        );
     }
 
     @Override
